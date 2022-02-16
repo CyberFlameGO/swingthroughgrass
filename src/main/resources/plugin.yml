@@ -1,0 +1,8 @@
+name: SwingThroughGrass
+version: '${project.version}'
+main: com.github.ascpixi.swingthroughgrass.SwingThroughGrass
+api-version: 1.14
+prefix: SwingThroughGrass
+authors: [ ascpixi ]
+description: Allows players to swing through grass with swords.
+website: https://github.com/ascpixi/swingthroughgrass
