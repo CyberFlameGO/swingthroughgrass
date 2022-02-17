@@ -40,6 +40,26 @@ public class GrassSwingListener implements Listener {
         }
     }
 
+    /**
+     * Checks if the specified material is a block without a collider hitbox,
+     * and takes up two blocks.
+     * @param material The target material.
+     * @return A value indicating whether the specified material is a double-block.
+     */
+    boolean isDoubleBlock(Material material){
+        switch (material){
+            case TALL_GRASS:
+            case SUNFLOWER:
+            case LARGE_FERN:
+            case ROSE_BUSH:
+            case LILAC:
+            case PEONY:
+                return true;
+            default:
+                return false;
+        }
+    }
+
     @EventHandler(ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event){
         Player p = event.getPlayer();
@@ -50,7 +70,7 @@ public class GrassSwingListener implements Listener {
 
         if(
             p.getAttackCooldown() == 1f &&
-            event.getBlock().getType() == Material.TALL_GRASS &&
+            isDoubleBlock(event.getBlock().getType()) &&
             isWeapon(weapon.getType())
         ){
             RayTraceResult result = world.rayTraceEntities(
