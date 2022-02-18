@@ -78,7 +78,7 @@ public class GrassSwingListener implements Listener {
                 p.getLocation().getDirection(),
                 2,
                 1f,
-                (e) -> e.getType().isAlive() && e != p
+                (e) -> e.getType().isAlive() && e != p && e != p.getVehicle()
             );
 
             if(result == null) return; // no entity was hit
