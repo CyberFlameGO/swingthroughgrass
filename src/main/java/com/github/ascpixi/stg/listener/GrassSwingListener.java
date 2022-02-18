@@ -1,5 +1,6 @@
 package com.github.ascpixi.stg.listener;
 
+import com.github.ascpixi.stg.SwingThroughGrass;
 import org.bukkit.*;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -9,10 +10,36 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.RayTraceResult;
 
+import java.util.*;
+
 /**
  * Handles swinging through grass.
  */
 public class GrassSwingListener implements Listener {
+    private final SwingThroughGrass plugin;
+    private final EnumSet<Material> processedBlocks = EnumSet.noneOf(Material.class);
+
+    /**
+     * Constructs a new instance of the GrassSwingListener class.
+     * @param plugin The calling plugin.
+     */
+    public GrassSwingListener(SwingThroughGrass plugin){
+        this.plugin = plugin;
+        reload();
+    }
+
+    /**
+     * Reloads this listener.
+     */
+    public void reload(){
+        List<String> raw = plugin.getConfig().getStringList("block-whitelist");
+
+        processedBlocks.clear();
+        for(String materialName : raw){
+            processedBlocks.add(Material.getMaterial(materialName));
+        }
+    }
+
     /**
      * Checks if the specified material is either an axe or a sword.
      * @param material The target material.
@@ -40,26 +67,6 @@ public class GrassSwingListener implements Listener {
         }
     }
 
-    /**
-     * Checks if the specified material is a block without a collider hitbox,
-     * and takes up two blocks.
-     * @param material The target material.
-     * @return A value indicating whether the specified material is a double-block.
-     */
-    boolean isDoubleBlock(Material material){
-        switch (material){
-            case TALL_GRASS:
-            case SUNFLOWER:
-            case LARGE_FERN:
-            case ROSE_BUSH:
-            case LILAC:
-            case PEONY:
-                return true;
-            default:
-                return false;
-        }
-    }
-
     @EventHandler(ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event){
         Player p = event.getPlayer();
@@ -70,7 +77,7 @@ public class GrassSwingListener implements Listener {
 
         if(
             p.getAttackCooldown() == 1f &&
-            isDoubleBlock(event.getBlock().getType()) &&
+            processedBlocks.contains(event.getBlock().getType()) &&
             isWeapon(weapon.getType())
         ){
             RayTraceResult result = world.rayTrace(

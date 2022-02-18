@@ -6,3 +6,10 @@ prefix: SwingThroughGrass
 authors: [ ascpixi ]
 description: Allows players to swing through grass with swords.
 website: https://github.com/ascpixi/swingthroughgrass
+commands:
+  swingthroughgrass:
+    description: Manages the SwingThroughGrass plugin.
+    usage: /swingthroughgrass [reload | version]
+    aliases:
+      - stg
+    permission: swingthroughgrass.command
