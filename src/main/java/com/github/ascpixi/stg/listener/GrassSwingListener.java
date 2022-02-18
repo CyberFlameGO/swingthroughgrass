@@ -73,15 +73,18 @@ public class GrassSwingListener implements Listener {
             isDoubleBlock(event.getBlock().getType()) &&
             isWeapon(weapon.getType())
         ){
-            RayTraceResult result = world.rayTraceEntities(
+            RayTraceResult result = world.rayTrace(
                 p.getEyeLocation(),
                 p.getLocation().getDirection(),
                 2,
+                FluidCollisionMode.NEVER,
+                true,
                 1f,
                 (e) -> e.getType().isAlive() && e != p && e != p.getVehicle()
             );
 
             if(result == null) return; // no entity was hit
+            if(result.getHitEntity() == null) return;
 
             // this should never occur!
             // all entity types that return true on "isAlive()" should represent
