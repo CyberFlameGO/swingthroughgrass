@@ -1,6 +1,6 @@
 name: SwingThroughGrass
 version: '${project.version}'
-main: com.github.ascpixi.swingthroughgrass.SwingThroughGrass
+main: com.github.ascpixi.stg.SwingThroughGrass
 api-version: 1.14
 prefix: SwingThroughGrass
 authors: [ ascpixi ]

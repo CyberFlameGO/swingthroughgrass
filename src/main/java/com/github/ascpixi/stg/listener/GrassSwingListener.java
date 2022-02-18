@@ -1,4 +1,4 @@
-package com.github.ascpixi.swingthroughgrass.listener;
+package com.github.ascpixi.stg.listener;
 
 import org.bukkit.*;
 import org.bukkit.entity.LivingEntity;

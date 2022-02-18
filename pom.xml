@@ -44,7 +44,7 @@
                             <relocations>
                                 <relocation>
                                     <pattern>org.bstats</pattern>
-                                    <shadedPattern>com.github.ascpixi.swingthroughgrass.bstats</shadedPattern>
+                                    <shadedPattern>com.github.ascpixi.stg.bstats</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>

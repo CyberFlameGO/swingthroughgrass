@@ -1,6 +1,6 @@
-package com.github.ascpixi.swingthroughgrass;
+package com.github.ascpixi.stg;
 
-import com.github.ascpixi.swingthroughgrass.listener.GrassSwingListener;
+import com.github.ascpixi.stg.listener.GrassSwingListener;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
